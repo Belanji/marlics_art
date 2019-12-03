@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2016/Debian)
+Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
+The top-level auxiliary file: marlics.aux
+The style file: elsarticle-num.bst
+Database file #1: marlics.bib
+Warning--I didn't find a database entry for ""
+You've used 5 entries,
+            2952 wiz_defined-function locations,
+            714 strings with 6192 characters,
+and the built_in function-call counts, 1601 in all, are:
+= -- 160
+> -- 47
+< -- 0
++ -- 19
+- -- 14
+* -- 133
+:= -- 244
+add.period$ -- 9
+call.type$ -- 5
+change.case$ -- 4
+chr.to.int$ -- 0
+cite$ -- 5
+duplicate$ -- 45
+empty$ -- 176
+format.name$ -- 18
+if$ -- 407
+int.to.chr$ -- 0
+int.to.str$ -- 5
+missing$ -- 5
+newline$ -- 30
+num.names$ -- 5
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 88
+stack$ -- 0
+substring$ -- 64
+swap$ -- 16
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 9
+width$ -- 6
+write$ -- 57
+(There was 1 warning)

@@ -1,0 +1,46 @@
+\begin{thebibliography}{1}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{anderson2001lc3d}
+J.~Anderson, P.~Watson, P.~Bos,
+  \href{https://books.google.com.br/books?id=4-CyPAAACAAJ}{LC3D: Liquid Crystal
+  Display 3-D Director Simulator Software and Technology Guide}, Artech House
+  optoelectronics library, Artech House, 2001.
+\newline\urlprefix\url{https://books.google.com.br/books?id=4-CyPAAACAAJ}
+
+\bibitem{LCDMaster}
+{Shintech}.
+\newblock \href{http://shintech.jp/optics/en/}{Lcdmaster 1d/2d/3d} [online]
+  (2015).
+
+\bibitem{Licra}
+B.~F. de~Oliveira, P.~P. Avelino, F.~Moraes, J.~C. R.~E. Oliveira,
+  \href{https://link.aps.org/doi/10.1103/PhysRevE.82.041707}{Nematic liquid
+  crystal dynamics under applied electric fields}, Phys. Rev. E 82 (2010)
+  041707.
+\newblock \href {https://doi.org/10.1103/PhysRevE.82.041707}
+  {\path{doi:10.1103/PhysRevE.82.041707}}.
+\newline\urlprefix\url{https://link.aps.org/doi/10.1103/PhysRevE.82.041707}
+
+\bibitem{Sussman2019}
+D.~M. Sussman, D.~A. Beller,
+  \href{http://arxiv.org/abs/1911.07045{\%}0Ahttp://dx.doi.org/10.3389/fphy.2019.00204}{{Fast,
+  scalable, and interactive software for Landau-de Gennes numerical modeling of
+  nematic topological defects}}, Frontiers in Physics 7 (2019) 204.
+\newblock \href {http://arxiv.org/abs/1911.07045} {\path{arXiv:1911.07045}},
+  \href {https://doi.org/10.3389/fphy.2019.00204}
+  {\path{doi:10.3389/fphy.2019.00204}}.
+\newline\urlprefix\url{http://arxiv.org/abs/1911.07045{\%}0Ahttp://dx.doi.org/10.3389/fphy.2019.00204}
+
+\bibitem{Sec2012}
+D.~Se{\v{c}}, T.~Porenta, M.~Ravnik, S.~{\v{Z}}umer, {Geometrical frustration
+  of chiral ordering in cholesteric droplets}, Soft Matter 8~(48) (2012)
+  11982--11988.
+\newblock \href {https://doi.org/10.1039/c2sm27048j}
+  {\path{doi:10.1039/c2sm27048j}}.
+
+\end{thebibliography}

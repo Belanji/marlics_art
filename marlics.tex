@@ -208,6 +208,9 @@ Liquid crystals \sep Landau-de Gennes \sep finite differences.
 \section{Introduction}
 \label{Introduction}
 
+\textbf{Misses an introduction to optical devices or light modulating
+  devices.}
+
 Liquid crystals are excellent materials to perform these functions,
 since it can selectively reflect or transmit the incoming light
 depending on its state, which can be controlled by an external
@@ -224,13 +227,15 @@ prototyping a device it can be simulated in a package in many forms
 before being prototyped, saving time and resources.
 
 There are available some commercial softwares available for simulation
-of liquid crystals devices, for instance \cite{} and \cite{}. These
-softwares provides out of the box capabilities for simulation and
-visualization, however it lacks the possibility for extension by the
-user, also, if the project is discontinued, there is no way to
-implement new features. Recently, an open source software was released
-to search for the minimum energy of liquid crystal\cite{Sussman2019},
-however the code is focused in the equilibrium state of the sample. 
+of liquid crystals devices, for instance LC3D\cite{anderson2001lc3d}
+and LCD master\cite{LCDMaster}. These softwares provides out of the
+box capabilities for simulation and visualization, however it lacks
+the possibility for extension by the user, also, if the project is
+discontinued, there is no way to implement new features. An open
+source alternative is Licra \cite{Licra}, Recently, an open source
+software was released to search for the minimum energy of liquid
+crystal\cite{Sussman2019}, however the code is focused in the
+equilibrium state of the sample.
 
 In this paper we present \textit{marlics}, it is a open source code
 designed to simulate the dynamics of liquid crystal order
@@ -244,7 +249,7 @@ the actual program.
 The scalar order parameters $\lbrace S, P \rbrace$ and the director and co-director $\lbrace \vec{n}, \vec{l} \rbrace$ can be
 combined in unique order parameter $Q_{ij}$ , which is a second rank tensor whose elements are given by:
 \begin{equation}\label{eq:tensorial_parameter}
-  Q_{ij}=\dfrac{1}{2} S ( 3 n_{i} n_{j}- 1) + P (l_i l_j - m_i m_j)
+  Q_{ij}=\dfrac{1}{2} S ( 3 n_{i} n_{j}- 1) + \dfrac{P}{2} (l_i l_j - m_i m_j)
 \end{equation}
 where $i=1,2,3$ and $j=1,2,3$.  This order parameter is symmetric and traceless, therefore only 5 independent elements, for example $\lbrace Q_{11}, Q_{12},Q_{13}, Q_{22}, Q_{23} \rbrace $ are necessary to fully determine it.
 
