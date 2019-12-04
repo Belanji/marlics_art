@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.4.2)  3 DEC 2019 14:14
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2019.4.2)  4 DEC 2019 14:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -848,7 +848,7 @@ Underfull \vbox (badness 2903) has occurred while \output is active []
 
 
 ]
-Underfull \hbox (badness 1264) in paragraph at lines 265--274
+Underfull \hbox (badness 1264) in paragraph at lines 267--276
 \OT1/txr/m/n/10 where $\OML/txmi/m/it/10 Q[] \OT1/txr/m/n/10 = \OML/txmi/m/it/1
 0 @Q[]=@x[]$ \OT1/txr/m/n/10 , $\OML/txmi/m/it/10 ^^O[]$ \OT1/txr/m/n/10 is the
  Levi-Civita ten-sor,
@@ -856,29 +856,45 @@ Underfull \hbox (badness 1264) in paragraph at lines 265--274
 
 
 Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
-d on input line 310.
+d on input line 315.
 
-[2] [3]
-Underfull \vbox (badness 10000) detected at line 512
- []
+[2]
+
+LaTeX Warning: Reference `apx:list_of_parameters' on page 3 undefined on input 
+line 394.
+
+
+LaTeX Warning: Reference `sec:output_files' on page 3 undefined on input line 3
+99.
+
+[3]
+
+LaTeX Warning: Reference `apx:extending_software' on page 4 undefined on input 
+line 487.
 
 [4
 
-] [5
+]
+Underfull \vbox (badness 10000) detected at line 551
+ []
+
+[5
+
+] [6
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+txr on input line 578.
+LaTeX Font Info:    Try loading font information for OMS+txr on input line 617.
 
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 578.
- [6
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 617.
+ [7
 
 ]
-[7] (./marlics.bbl
+[8] (./marlics.bbl
 Underfull \hbox (badness 1281) in paragraph at lines 30--38
 []\OT1/txr/m/n/8 D. M. Suss-man, D. A. Beller, Fast, scal-able, and in-ter-ac-t
 ive soft-
@@ -890,22 +906,25 @@ Overfull \hbox (98.60211pt too wide) in paragraph at lines 30--38
 doi.org/10.3389/fphy.2019.00204 
  []
 
-) [8
+) [9
 
 
 ] (./marlics.aux)
+
+LaTeX Warning: There were undefined references.
+
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 6305 strings out of 494884
- 88331 string characters out of 6179237
+ 6309 strings out of 494884
+ 88418 string characters out of 6179237
  195177 words of memory out of 5000000
- 9462 multiletter control sequences out of 15000+600000
+ 9466 multiletter control sequences out of 15000+600000
  40232 words of font info for 97 fonts, out of 8000000 for 9000
  38 hyphenation exceptions out of 8191
- 39i,11n,38p,239b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 39i,11n,38p,479b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/share/texliv
 e/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt8.pfb></usr/share/texlive/texmf
 -dist/fonts/type1/public/txfonts/rtxi.pfb></usr/share/texlive/texmf-dist/fonts/
@@ -916,10 +935,10 @@ ex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr
 ve/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on marlics.pdf (8 pages, 99664 bytes).
+Output written on marlics.pdf (9 pages, 103444 bytes).
 PDF statistics:
- 72 PDF objects out of 1000 (max. 8388607)
- 51 compressed objects within 1 object stream
+ 75 PDF objects out of 1000 (max. 8388607)
+ 53 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

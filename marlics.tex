@@ -400,10 +400,9 @@ We provide the most common initial conditions: random, homogeneous oriented alon
 
 We provided 3 defferent geometries in marlics: bulk, sphere and slab. Each geometry has its number of boundary conditions, in the case, 0, 1 and 2 respectively. To define a boundary the user must start a line with the \textit{boundary} keyword followed by the boundary name and its number. There is 4 forms of boundary conditions implemented in marlics: Rapinni-Papoular (in Nobili-Durant) form, Fournier-Galatola, strong boundaries and homeotropic.
 
-For more details see the
-supplementary file ``Userguide''.
-For reference, we also include an
-example of input file in the appendix \ref{apx:input_file}.
+For more details see the supplementary file ``Userguide''.  For
+reference, we also include an example of input file in the appendix
+\ref{apx:input_file}.
 
 \subsection{Output files:}\label{sec:output_files}
 
@@ -434,13 +433,18 @@ An example of a truncated output file
 can be viewed in appendix \ref{apx:output_file}.  More information can
 be found the in the supplementary material``Userguide''.
 
-\section{Test problems:}
+\section{Test problems:}\label{sec:testing_marlics}
 
-To validate our code we performed a few standard simulations. 
+To validate our code we performed a few standard simulations. Even
+though we are presenting a source code which can be used as a
+framework for user implemented situations, here we wanted to show out
+of the box capabilities. In this way we chose some of well documented
+scenarios performed in the marlics framework.
+
 
 \subsection{Bulk Nematic:}
 
-One of the 
+
 
 \subsection{Cholesteric Slab:}
 
@@ -456,6 +460,34 @@ itself with the profile
 
 
 \section{Software implementation and extension:}
+
+Marlics is subdivided in a series of C++ classes. There are 4 main
+super classes which confers most of marlics usability : energy,
+boundary, geometry and integrator. Each specific functionality must be
+implemented deriving one of these classes, for instance, the Landau-de
+Gennes energy is implemented through a class derived from the energy
+super class. 
+
+Boundary is a derivation of energy and contains the same functions
+plus some members containing information about which boundary it is
+associated.
+
+Integrator contains the routine to evolve the system of equations.
+
+Geometry contain the information about the geometry of the system and
+their boundary conditions. Here the user must provide a way to
+calculate the boundaries normals, and the parameter field
+derivatives. With all inofrmation present in the geometry class, we
+put the calculation of RHS in it, therefore, there is a routine to
+calculate the evolution RHS. To do this the geoemtry has as member an
+energy instance and a linked list containing the boundaries pointers.
+
+There is an final class called driver which parses the input file and
+assembly the simulation pieces, except for the boundaries, it setups
+all the other classes.  In the appendix \ref{apx:extending_software}
+we presents a short description showing how the user can implement
+their new situations (boundaries, integrators and geometries). 
+
 
 \section{Conclusions}
 
