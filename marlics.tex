@@ -309,7 +309,7 @@ the director inside this plane gives the same energy. This type of
 surface energy is described by the Fournier-Galatola anchoring energy
 given by \cite{Sec2012}:
 \begin{equation} \label{eq:penalizacao}
-f_{FG}(\mathbf{Q})=W\left( \tilde{Q_{ij}}(\bold{Q}) - \tilde{Q}_{ij}^{\perp}(\bold{Q}) \right)\left( \tilde{Q_{ij}}(\bold{Q}) - \tilde{Q}_{ij}^{\perp}(\bold{Q}) \right)
+f_{FG}(\mathbf{Q})=W\left( \tilde{Q_{ij}}(\mathbf{Q}) - \tilde{Q}_{ij}^{\perp}(\mathbf{Q}) \right)\left( \tilde{Q_{ij}}(\mathbf{Q}) - \tilde{Q}_{ij}^{\perp}(\mathbf{}{Q}) \right)
 \end{equation}
 where $W$ is the anchoring strength constant,
 $\tilde{Q_{ij}}(\bold{Q})=Q_{ij}+\dfrac{S_0}{3} \delta_{ij}$ and
@@ -379,7 +379,6 @@ marlics intput_file
 being \textit{input\_file} the file containing the simulation
 parameters.
 
-
 We already provide input files for some situations that the user can
 use to test the program, or as a base to their own simulations. All
 the parameters necessary to set up the simulation must be passed to
@@ -388,18 +387,25 @@ followed by the parameter required values:
 \begin{lstlisting}
 parameter value
 \end{lstlisting}
-
 Comments can be placed in the input file starting a line with ``\#'',
 everything in this line will be ignored by marlics. Also, everything
 following the required parameters will also be ignored by marlics. We
-found it quite useful to let the parameters units after its values.
+found it quite useful to let the parameters units after its values. Some paramters must be set, while others can have standard values assciated with them. Whenever marlics use an standard value, it inform the user in the standard output whch value was used.
+The paramerters standard values and its  units can be found in the table \ref{apx:list_of_parameters}.
+
+The simulation constants must be filled with a real number. The user has two options to pass the elastic constants: the user can pass the $L_i$ values, which are the constants actually used in the calculations, or pass the $k_{ii}$ values and let marlics calculate $L_i$. 
+Also the chirality power can be passed in two different ways, as $p_0$, i.e the helix passe, or as $q_0$, i.e the helix vector.
+
+We provide the most common initial conditions: random, homogeneous oriented along a direction $\vec{v}$. We have also provide an initial condition set as read\_from\_file and pass an file containing the initial condition. The refereed file must be formated as the standard output file presented in section \ref{sec:output_files}. The remaining initial co nditions can be checked in the user manual.
+
+We provided 3 defferent geometries in marlics: bulk, sphere and slab. Each geometry has its number of boundary conditions, in the case, 0, 1 and 2 respectively. To define a boundary the user must start a line with the \textit{boundary} keyword followed by the boundary name and its number. There is 4 forms of boundary conditions implemented in marlics: Rapinni-Papoular (in Nobili-Durant) form, Fournier-Galatola, strong boundaries and homeotropic.
 
 For more details see the
 supplementary file ``Userguide''.
 For reference, we also include an
 example of input file in the appendix \ref{apx:input_file}.
 
-\subsection{Output files:}
+\subsection{Output files:}\label{sec:output_files}
 
 The software produces two outputs: an log of the program execution,
 and a series of files containing the spatial distribution of the order
@@ -409,7 +415,6 @@ future, and informing the current state of the simulation. The log is
 printed in the standard output, which can aid the preparation of the
 input file, but we strong recommend redirecting it to a separate file
 for reference in future.
-
 
 The main output of the software are the files containing the spatial
 distribution of the order parameter: the main LC director director
@@ -466,7 +471,7 @@ on cases if necessary.
  \appendix
 
 \section{List of available parameters and its units:}
- \label{apx:input_file}
+ \label{apx:list_of_parameters}
 
  \onecolumn
  \begin{center}
