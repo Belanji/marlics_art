@@ -265,14 +265,18 @@ perpendicular to the director $\vec{n}$.
 The density of energy $f_s(S)$ associated with the scalar order
 parameter $S$ is given by:
 \begin{equation}
-  f_L(S)=
+  f_L(S)=\dfrac{1}{2} a \left(T-T^* \right) S^2- \dfrac{1}{3} S^3+\dfrac{1}{4} c S^4 +\dfrac{1}{2} L (\nabla S)^2
 \end{equation}
-while de energy associated with variation of $\vec{n}$ in space is
-given the Frank density of energy:
-\begin{equation}
-  f_f(\vec{n})=\dfrac{1}{2} K_{11} (\nabla \vec{n})^2 + \dfrac{1}{2} K_{11}+
-  +\dfrac{1}{2} K_{33} +\dfrac{1}{2} K_{24}  
-\end{equation}
+where $\lbrace{a,b,c,L}$ are thermodynamics constants. The energy
+associated with variation of $\vec{n}$ in space is given the Frank
+density of energy:
+\begin{align} \label{eq:frank_energy}\nonumber
+  f_f(\vec{n})&=\dfrac{1}{2} K_{11} (\nabla \cdot  \vec{n})^2 + \dfrac{1}{2} K_{22} (\vec{n} \cdot \nabla \times \vec{n}+q_0)^2\\
+ & +\dfrac{1}{2} K_{33} \left| \vec{n} \times \nabla \times \vec{n} \right|^2 
+  +\dfrac{1}{2} K_{24}  \nabla \cdot \left(\vec{n} \times \nabla \times  \vec{n} +\vec{n} \cdot \nabla \vec{n} \right)
+\end{align}
+being $\lbrace K_{11}, K_{22}, K_{33},K_{24} \rbrace$ elastic
+constants with units of force.
 
 The scalar order parameters $\lbrace S, P \rbrace$ and the director
 and co-director $\lbrace \vec{n}, \vec{l} \rbrace$ can be combined in
@@ -306,7 +310,7 @@ summation convention in repeated indexes.
 
 The dielectric energy density is given by:
 \begin{equation}
- f_e(\mathbf{Q})= -\dfrac{1}{3} \epsilon_0 \Delta \epsilon^m E_i E_j Q_{ij}+ \dfrac{2} \epsilon_0 \mathbf{E} \cdot \mathbf{E},
+ f_e(\mathbf{Q})= -\dfrac{1}{3} \epsilon_0 \Delta \epsilon^m E_i E_j Q_{ij}+ \dfrac{\epsilon_0}{2}  \mathbf{E} \cdot \mathbf{E},
 \end{equation}
 where $e_0$ is the vacuum dieletric constant,
 $\Delta \epsilon=\epsilon_{\parallel} - \epsilon_{\perp}$ is the
@@ -350,23 +354,46 @@ The time evolution of the order parameter is given by the
 Beris-Edwards set of equations. If we neglect the liquid crystal flow,
 the time evolution of $Q_{ij}$ in the bulk will be given by:
 \begin{equation} \label{eq:dissipacao_Q}
-\mu \dfrac{\partial Q_{ij}}{ \partial t} = -\left( \dfrac{\partial f_{V}(\mathbf{Q})}{\partial Q_{ij}} - \dfrac{\partial}{\partial x_k } \dfrac{\partial f_V(\mathbf{Q})}{\partial Q_{ij,k}}  \right),
+\dfrac{\partial Q_{ij}}{ \partial t} = -\dfrac{1}{\mu} \left( \dfrac{\partial f_{V}(\mathbf{Q})}{\partial Q_{ij}} - \dfrac{\partial}{\partial x_k } \dfrac{\partial f_V(\mathbf{Q})}{\partial Q_{ij,k}}  \right)=F_{ij}(\mathbf{Q}),
 \end{equation}
 %
 where $\mu$ is the bulk viscosity and $ \partial Q_{ij} \partial Q{kl} = (\delta_{ik} \delta_{jl}+\delta_{jk} \delta_{kl}-2 \delta_{ij} \delta_{kl}/3)$. Meanwhile the dynamics in the bulk will be given by
-\begin{align}
-\mu_s \dfrac{\partial Q_{ij}}{\partial t}=-\left(\nu_k\dfrac{\partial f_{LDG}(\mathbf{Q})}{\partial Q_{ij,k}} -\dfrac{\partial f_{pen}(\mathbf{Q})}{\partial Q_{ij}}\right),
+\begin{align}\label{eq:dissipacao_Q_superficie}
+\dfrac{\partial Q_{ij}}{\partial t}=-\dfrac{1}{\mu_s}\left(\nu_k\dfrac{\partial f_{LDG}(\mathbf{Q})}{\partial Q_{ij,k}} -\dfrac{\partial f_{pen}(\mathbf{Q})}{\partial Q_{ij}}\right)=F^s_{ij}(\mathbf{Q}),
 \end{align}
 here $\mu_s$ is the surface viscosity.
 
 We solve solve the system of equations using the method of lines
-\cite{}. The spatial discretization ids performed by means of finite
-differences. In the bulk we have taken central differences for all
-first derivatives and symmetric second order finite differences for
-the second order derivative. This frameworks allow the implementation
-of various integrators with easy, we have provided 3 explicit
-integrator with the program: forward Euler, explicit second order
-Runge-Kutta and the Dormand-Prince 5(4).
+\cite{Bhattacharjee2008}. In this method the spatial and time
+discretization of the governing equations are performed separated and
+independently, being the spatial dimensions of the equations
+discretized first.  We discretize the R.H.S of
+\eqref{eq:dissipacao_Q_superficie} and
+\eqref{eq:dissipacao_Q_superficie} by finite diferences. In the bulk
+we have taken centered diferences for both first order and second
+order derivatives. In the surface we have taken centered diferences
+for derivatives perpendicular to the normal and first order to
+derivatives parallel to the surface normal.
+
+In the methods of lines the temporal discretization depends on the
+kind of integrator intendend to propagate the solution. In the current
+version of marlics, we have implemented only explicit integrators,
+thus we have aproxiameted the time derivative by forward diferences.
+As an example we will take the Euler method; assuming $Q^t_{ij}$ is
+the value $Q_{ij}$ at time $t$, the value of $Q^{t+\Delta t}_{ij}$ can
+be calculated by:
+\begin{align}
+  Q^{t+\Delta t}_{ij}=Q^{t}_{ij}+ \Delta t F_{ij}(\mathbf{Q})
+\end{align}
+
+Although the Euler method is convergent and can be used in some cases,
+it has its drawbacks. The value of $\Delta t $ is fixed during the
+simulation, and the allowed timestep size is to small for some
+applications. As an alternative we have provided another 2 explicit
+integrator with the program: xplicit second order Runge-Kutta, which
+also has a fixed timestep but is more stable and the Dormand-Prince
+5(4), which has a self adaptive timestep. We implemented the time
+adaption as proposed in reference \cite{hairer2008solving}.
 
 \section{Software Usage:} \label{sec:software_usage}
 

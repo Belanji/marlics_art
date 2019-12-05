@@ -4,45 +4,45 @@ The top-level auxiliary file: marlics.aux
 The style file: elsarticle-num.bst
 Database file #1: marlics.bib
 Warning--I didn't find a database entry for ""
-You've used 5 entries,
+You've used 7 entries,
             2952 wiz_defined-function locations,
-            714 strings with 6192 characters,
-and the built_in function-call counts, 1601 in all, are:
-= -- 160
-> -- 47
+            729 strings with 6714 characters,
+and the built_in function-call counts, 2185 in all, are:
+= -- 215
+> -- 67
 < -- 0
-+ -- 19
-- -- 14
-* -- 133
-:= -- 244
-add.period$ -- 9
-call.type$ -- 5
-change.case$ -- 4
++ -- 27
+- -- 20
+* -- 178
+:= -- 321
+add.period$ -- 12
+call.type$ -- 7
+change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 5
-duplicate$ -- 45
-empty$ -- 176
-format.name$ -- 18
-if$ -- 407
+cite$ -- 7
+duplicate$ -- 63
+empty$ -- 247
+format.name$ -- 26
+if$ -- 562
 int.to.chr$ -- 0
-int.to.str$ -- 5
-missing$ -- 5
-newline$ -- 30
-num.names$ -- 5
-pop$ -- 29
+int.to.str$ -- 7
+missing$ -- 8
+newline$ -- 38
+num.names$ -- 7
+pop$ -- 44
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 88
+skip$ -- 126
 stack$ -- 0
-substring$ -- 64
-swap$ -- 16
+substring$ -- 80
+swap$ -- 20
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 9
-width$ -- 6
-write$ -- 57
+while$ -- 13
+width$ -- 8
+write$ -- 76
 (There was 1 warning)

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.12.6)  4 DEC 2019 16:31
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.12.6)  5 DEC 2019 10:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -602,12 +602,12 @@ Package: lineno 2005/11/02 line numbers on paragraphs v4.41
 LaTeX Info: Redefining \\ on input line 3056.
 )
 \c@bla=\count137
-
-No file marlics.aux.
+ (./marlics.aux)
 \openout1 = `marlics.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/txmi/m/it on input line 98.
 LaTeX Font Info:    Try loading font information for OML+txmi on input line 98.
+
 
 (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omltxmi.fd
 File: omltxmi.fd 2000/12/15 v3.1
@@ -837,126 +837,30 @@ Underfull \hbox (badness 10000) in paragraph at lines 197--198
  []
 
 
-Package natbib Warning: Citation `anderson2001lc3d' on page 1 undefined on inpu
-t line 230.
-
-
-Package natbib Warning: Citation `LCDMaster' on page 1 undefined on input line 
-231.
-
-
-Package natbib Warning: Citation `Licra' on page 1 undefined on input line 235.
-
-
-
-Package natbib Warning: Citation `Sussman2019' on page 1 undefined on input lin
-e 237.
-
-
 Underfull \vbox (badness 2903) has occurred while \output is active []
 
  [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
 
 
 ]
-Underfull \hbox (badness 1264) in paragraph at lines 297--306
+Underfull \hbox (badness 1264) in paragraph at lines 301--310
 \OT1/txr/m/n/10 where $\OML/txmi/m/it/10 Q[] \OT1/txr/m/n/10 = \OML/txmi/m/it/1
 0 @Q[]=@x[]$ \OT1/txr/m/n/10 , $\OML/txmi/m/it/10 ^^O[]$ \OT1/txr/m/n/10 is the
  Levi-Civita ten-sor,
  []
 
 
-LaTeX Warning: Reference `eq:tensorial_parameter' on page 2 undefined on input 
-line 333.
-
-
-Package natbib Warning: Citation `Sec2012' on page 2 undefined on input line 34
-0.
-
-
 Package amsfonts Warning: Obsolete command \bold; \mathbf should be used instea
-d on input line 345.
+d on input line 349.
 
-[2]
-
-LaTeX Warning: Reference `apx:list_of_parameters' on page 3 undefined on input 
-line 424.
-
-
-LaTeX Warning: Reference `sec:output_files' on page 3 undefined on input line 4
-29.
-
-
-LaTeX Warning: Reference `apx:input_file' on page 3 undefined on input line 435
-.
-
-
-LaTeX Warning: Reference `apx:output_file' on page 3 undefined on input line 46
-3.
-
-[3]
+[2] [3]
 
 LaTeX Warning: Reference `apx:extending_software' on page 4 undefined on input 
-line 517.
+line 544.
 
-[4
-
-]
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 576.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 578.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 580.
-
-
-Underfull \vbox (badness 10000) detected at line 581
+[4]
+Underfull \vbox (badness 10000) detected at line 608
  []
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 582.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 598.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 620.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 622.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 624.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 626.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 628.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 630.
-
-
-LaTeX Warning: Reference `sec:software_usage' on page 5 undefined on input line
- 632.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table A.1 on input line 634.
 
 [5
 
@@ -964,13 +868,13 @@ Package longtable Warning: Column widths have changed
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+txr on input line 647.
+LaTeX Font Info:    Try loading font information for OMS+txr on input line 674.
 
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 647.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 674.
  [7
 
 ]
@@ -986,34 +890,19 @@ Overfull \hbox (98.60211pt too wide) in paragraph at lines 30--38
 doi.org/10.3389/fphy.2019.00204 
  []
 
-)
-
-Package natbib Warning: There were undefined citations.
+) [9
 
 
-Package longtable Warning: Table widths have changed. Rerun LaTeX.
-
-[9
-
-
-] (./marlics.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+] (./marlics.aux)
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 6307 strings out of 494884
- 88394 string characters out of 6179236
- 194899 words of memory out of 5000000
- 9466 multiletter control sequences out of 15000+600000
+ 6317 strings out of 494884
+ 88613 string characters out of 6179236
+ 195220 words of memory out of 5000000
+ 9474 multiletter control sequences out of 15000+600000
  40232 words of font info for 97 fonts, out of 8000000 for 9000
  38 hyphenation exceptions out of 8191
  39i,11n,38p,486b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1027,7 +916,7 @@ ex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr
 ve/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on marlics.pdf (9 pages, 105027 bytes).
+Output written on marlics.pdf (9 pages, 108604 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream

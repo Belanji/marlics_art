@@ -43,4 +43,18 @@ D.~Se{\v{c}}, T.~Porenta, M.~Ravnik, S.~{\v{Z}}umer, {Geometrical frustration
 \newblock \href {https://doi.org/10.1039/c2sm27048j}
   {\path{doi:10.1039/c2sm27048j}}.
 
+\bibitem{Bhattacharjee2008}
+A.~K. Bhattacharjee, G.~I. Menon, R.~Adhikari, {Numerical method of lines for
+  the relaxational dynamics of nematic liquid crystals}, Physical Review E -
+  Statistical, Nonlinear, and Soft Matter Physics 78~(2) (2008) 1--10.
+\newblock \href {https://doi.org/10.1103/PhysRevE.78.026707}
+  {\path{doi:10.1103/PhysRevE.78.026707}}.
+
+\bibitem{hairer2008solving}
+E.~Hairer, S.~N{\o}rsett, G.~Wanner,
+  \href{https://books.google.com.br/books?id=F93u7VcSRyYC}{Solving Ordinary
+  Differential Equations I: Nonstiff Problems}, Springer Series in
+  Computational Mathematics, Springer Berlin Heidelberg, 2008.
+\newline\urlprefix\url{https://books.google.com.br/books?id=F93u7VcSRyYC}
+
 \end{thebibliography}
