@@ -212,37 +212,50 @@ Liquid crystals \sep Landau-de Gennes \sep finite differences.
   devices.}
 
 Liquid crystals are excellent materials to perform these functions,
-since it can selectively reflect or transmit the incoming light
-depending on its state, which can be controlled by an external
-perturbation. In displays, one of the most common application, it used
-of electric fields the control the liquid crystals state \cite{}. The
-difference among the many types of displays is due to its boundary
-conditions, with strongly interferes in the device operation \cite{}.
+since it can selectively reflect or transmit incoming light depending
+on its state, which can be controlled by an external perturbation. In
+displays, one of the most common application, it is used electric
+fields to control the liquid crystals state \cite{wu2006fundamentals}.
+There are many types o LCDs current available, being the major
+difference among them given by the distribution of electrodes in the
+device, and the inclusion of protrusions in the boundaries of the
+confining surface \cite{chen2011liquid}.
 
 The design of new devices requires a great amount of experimentation
-and empirical knowledge, which would require a unpractical number of
-experiments to be performed. As an alternative, the researcher can
-turn to modeling softwares to aid in the discovery process. Before
-prototyping a device it can be simulated in a package in many forms
-before being prototyped, saving time and resources.
+and empirical knowledge. Performing every trial with a real apparatus
+would require a unpractical number of prototypes to construct and
+tested. As an alternative, the researcher can turn to modeling
+softwares to aid in the discovery process. Before prototyping a device
+it can be simulated in a package in many forms before being
+constructed saving time and resources.
 
-There are available some commercial softwares available for simulation
-of liquid crystals devices, for instance LC3D\cite{anderson2001lc3d}
-and LCD master\cite{LCDMaster}. These softwares provides out of the
-box capabilities for simulation and visualization, however it lacks
-the possibility for extension by the user, also, if the project is
-discontinued, there is no way to implement new features. An open
-source alternative is Licra \cite{Licra}, Recently, an open source
-software was released to search for the minimum energy of liquid
-crystal\cite{Sussman2019}, however the code is focused in the
-equilibrium state of the sample.
+There are some commercial available softwares for simulation of liquid
+crystals devices, for instance LC3D\cite{anderson2001lc3d} and LCD
+master\cite{LCDMaster}. These softwares provides out of the box
+capabilities for simulation and visualization, however it lacks the
+possibility for extension by the user. Open sources alternatives have
+been appearing to fill this gap, Licra \cite{Licra} is one of this
+attempt. The licra software is written in C an support a few modes of
+use, however, its implementation is very monolithic, and if the user
+wants to change a simulation parameter, or a mode of operation, he/she
+has to code it directly to the source code and recompile the
+executable. Recently, another open source liquid crystal simulation
+software has been released \cite{Sussman2019}. The program named
+openQmin, performs the minimization of the liquid crystal energy,
+searching for its minimum energy state. The program works in many
+situations and can be fine tuned by the user via a script or a
+graphical interface.  It has many desirable capabilities, and performs
+very well, but the program is focused in static problems, and in some
+situations he dynamic operation of the device is a matter of great
+importance.
 
 In this paper we present \textit{marlics}, it is a open source code
 designed to simulate the dynamics of liquid crystal order
 parameters. The code The code is written in C++ using an independent
 system of classes, which provide the building blocks for the most
-common system, but also, it is easy to extend for cases not covered by
-the actual program.
+common cases, and provide a framework where the user can develop their
+specific applications. The mode of operation is defined by a script
+which is passed to the software.
 
 \section{Theoretical background}
 
@@ -280,7 +293,7 @@ constants with units of force.
 
 The scalar order parameters $\lbrace S, P \rbrace$ and the director
 and co-director $\lbrace \vec{n}, \vec{l} \rbrace$ can be combined in
-unique order parameter $Q_{ij}$ , which is a second rank tensor whose
+unique order parameter $\mathbf{Q}$ , which is a second rank tensor whose
 elements are given by:
 \begin{equation}\label{eq:tensorial_parameter}
   Q_{ij}=\dfrac{1}{2} S ( 3 n_{i} n_{j}- 1) + \dfrac{P}{2} (l_i l_j - m_i m_j)
@@ -307,6 +320,15 @@ constants related to the nematic isotropic transition and $T$ and
 $T^*$ are the system temperature and the virtual nematic-isotropic
 phase transition temperature, respectively. Here we used Einstein
 summation convention in repeated indexes.
+
+The elastic constants of the Frank energy $\lbrace K_{11}, K_{22}, K_{33}, K_{24} \rbrace$ and the Landau-De Gennes ones $\lbrace L_1 ,L_2,L_3, L_q, L_s \rbrace$ are related by the expressions:
+\begin{align}\label{eq:frank_to_ldg} \nonumber
+L_1&=\dfrac{2.0 (k33-k11+3.0 k22)}{(27.0 {S_{eq}}^2)}\\\nonumber
+L_2&=\dfrac{4.0 (k11-k22-k24)}{(9.0 {S_{eq}}^2)}\\\nonumber
+L_3&=\dfrac{4.0 (k33-k11)}{(27.0 {S_{eq}}^3 )}\\\nonumber
+L_q&=\dfrac{2.0 (k22)}{(9.0 {S_{eq}}^2)}\\
+L_s&=\dfrac{4 (k24)}{(9.0 {S_{eq}}^2)}
+\end{align}
 
 The dielectric energy density is given by:
 \begin{equation}

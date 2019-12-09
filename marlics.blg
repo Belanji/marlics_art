@@ -3,46 +3,44 @@ Capacity: max_strings=100000, hash_size=100000, hash_prime=85009
 The top-level auxiliary file: marlics.aux
 The style file: elsarticle-num.bst
 Database file #1: marlics.bib
-Warning--I didn't find a database entry for ""
-You've used 7 entries,
+You've used 9 entries,
             2952 wiz_defined-function locations,
-            729 strings with 6714 characters,
-and the built_in function-call counts, 2185 in all, are:
-= -- 215
-> -- 67
+            741 strings with 7021 characters,
+and the built_in function-call counts, 2684 in all, are:
+= -- 257
+> -- 78
 < -- 0
-+ -- 27
-- -- 20
-* -- 178
-:= -- 321
-add.period$ -- 12
-call.type$ -- 7
++ -- 32
+- -- 23
+* -- 205
+:= -- 382
+add.period$ -- 14
+call.type$ -- 9
 change.case$ -- 5
 chr.to.int$ -- 0
-cite$ -- 7
-duplicate$ -- 63
-empty$ -- 247
-format.name$ -- 26
-if$ -- 562
+cite$ -- 9
+duplicate$ -- 82
+empty$ -- 325
+format.name$ -- 30
+if$ -- 708
 int.to.chr$ -- 0
-int.to.str$ -- 7
-missing$ -- 8
-newline$ -- 38
-num.names$ -- 7
-pop$ -- 44
+int.to.str$ -- 9
+missing$ -- 12
+newline$ -- 46
+num.names$ -- 9
+pop$ -- 65
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 126
+skip$ -- 162
 stack$ -- 0
 substring$ -- 80
-swap$ -- 20
+swap$ -- 22
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 13
-width$ -- 8
-write$ -- 76
-(There was 1 warning)
+while$ -- 15
+width$ -- 10
+write$ -- 94

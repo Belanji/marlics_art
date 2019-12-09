@@ -5,6 +5,18 @@
 \expandafter\ifx\csname href\endcsname\relax
   \def\href#1#2{#2} \def\path#1{#1}\fi
 
+\bibitem{wu2006fundamentals}
+S.~Wu, D.~Yang,
+  \href{https://books.google.com.br/books?id=0m2ag8AMzSkC}{Fundamentals of
+  Liquid Crystal Devices}, Wiley Series in Display Technology, Wiley, 2006.
+\newline\urlprefix\url{https://books.google.com.br/books?id=0m2ag8AMzSkC}
+
+\bibitem{chen2011liquid}
+R.~Chen, \href{https://books.google.com.br/books?id=X8u8BdIKRQ8C}{Liquid
+  Crystal Displays: Fundamental Physics and Technology}, Wiley Series in
+  Display Technology, Wiley, 2011.
+\newline\urlprefix\url{https://books.google.com.br/books?id=X8u8BdIKRQ8C}
+
 \bibitem{anderson2001lc3d}
 J.~Anderson, P.~Watson, P.~Bos,
   \href{https://books.google.com.br/books?id=4-CyPAAACAAJ}{LC3D: Liquid Crystal
