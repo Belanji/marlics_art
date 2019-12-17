@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.12.6)  9 DEC 2019 11:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2018.12.6)  17 DEC 2019 10:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -854,10 +854,10 @@ d on input line 371.
 [3]
 
 LaTeX Warning: Reference `apx:extending_software' on page 4 undefined on input 
-line 566.
+line 580.
 
 [4]
-Underfull \vbox (badness 10000) detected at line 630
+Underfull \vbox (badness 10000) detected at line 633
  []
 
 [5
@@ -866,13 +866,13 @@ Underfull \vbox (badness 10000) detected at line 630
 
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+txr on input line 696.
+LaTeX Font Info:    Try loading font information for OMS+txr on input line 699.
 
  (/usr/share/texlive/texmf-dist/tex/latex/txfonts/omstxr.fd
 File: omstxr.fd 2000/12/15 v3.1
 )
 LaTeX Font Info:    Font shape `OMS/txr/m/n' in size <10> not available
-(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 696.
+(Font)              Font shape `OMS/txsy/m/n' tried instead on input line 699.
  [7
 
 ]
@@ -897,10 +897,10 @@ LaTeX Warning: There were undefined references.
 
  ) 
 Here is how much of TeX's memory you used:
- 6324 strings out of 494884
- 88774 string characters out of 6179236
- 195259 words of memory out of 5000000
- 9481 multiletter control sequences out of 15000+600000
+ 6325 strings out of 494884
+ 88797 string characters out of 6179236
+ 195276 words of memory out of 5000000
+ 9482 multiletter control sequences out of 15000+600000
  40232 words of font info for 97 fonts, out of 8000000 for 9000
  38 hyphenation exceptions out of 8191
  39i,11n,38p,486b,1411s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -914,7 +914,7 @@ ex.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/txfonts/txsy.pfb></usr
 ve/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on marlics.pdf (9 pages, 111772 bytes).
+Output written on marlics.pdf (9 pages, 111869 bytes).
 PDF statistics:
  75 PDF objects out of 1000 (max. 8388607)
  53 compressed objects within 1 object stream

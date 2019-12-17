@@ -340,7 +340,7 @@ dielectric anisotropy which measures the diference between the
 dieletric constant parallel($\epsilon_{\parallel}$) and perpendicular
 ($\epsilon_{\perp}$) to the liquid crystal director.  The volume energy
 density ($f_v$) will be given by the sum of all energy terms being considered:
-\begin{equation}
+\begin{equation}\label{eq:total_energy}
   f_v(\mathbf{Q})=f_{ldg}(\mathbf{Q})+f_e(\mathbf{Q})
 \end{equation}
 
@@ -538,35 +538,6 @@ itself with the profile
 
 
 
-\section{Software implementation and extension:}
-
-Marlics is subdivided in a series of C++ classes. There are 4 main
-super classes which confers most of marlics usability : energy,
-boundary, geometry and integrator. Each specific functionality must be
-implemented deriving one of these classes, for instance, the Landau-de
-Gennes energy is implemented through a class derived from the energy
-super class. 
-
-Boundary is a derivation of energy and contains the same functions
-plus some members containing information about which boundary it is
-associated.
-
-Integrator contains the routine to evolve the system of equations.
-
-Geometry contain the information about the geometry of the system and
-their boundary conditions. Here the user must provide a way to
-calculate the boundaries normals, and the parameter field
-derivatives. With all inofrmation present in the geometry class, we
-put the calculation of RHS in it, therefore, there is a routine to
-calculate the evolution RHS. To do this the geoemtry has as member an
-energy instance and a linked list containing the boundaries pointers.
-
-There is an final class called driver which parses the input file and
-assembly the simulation pieces, except for the boundaries, it setups
-all the other classes.  In the appendix \ref{apx:extending_software}
-we presents a short description showing how the user can implement
-their new situations (boundaries, integrators and geometries). 
-
 
 \section{Conclusions}
 
@@ -581,6 +552,66 @@ on cases if necessary.
 %% appendix sections are then done as normal sections
  \appendix
 
+\section{Software implementation and extension:}\label{apx:extending_marlics}
+
+Marlics is subdivided in a series of C++ classes. There are 4 main
+super classes which confers most of marlics usability : energy,
+boundary, geometry and integrator. Each specific functionality must be
+implemented deriving one of these classes, \textcolor{red}{for
+  instance, the Landau-de Gennes energy is implemented through a class
+  derived from the energy super class}. Maybe I should remove the
+example. Follow in details what every of these class does and how to specialize it:
+
+\begin{itemize}
+
+\item Driver: We start with the driver helper class. Its main purpose
+  it is to parses the input file and assembly the simulation pieces,
+  except for the boundaries. Any new parameter that the user wants to
+  include in the system must be added in the structure xxxx and later
+  provided a reading keyword in the routine parse_input_file.
+
+
+  
+\item Energy: Energy super class contain the API to calculate the
+  R.H.S. of equations \eqref{eq:dissipacao_Q_superficie}. Different
+  from the other classes we provide an single bulk energy name given
+  by \eqref{eq:total_energy}. In this way we can inline the routines
+  in the code and allow a series of optimizations to be performed. We
+  believe this is not a drawback since the user will be using the same
+  bulk energy most of time. If the user wants to include a term in the
+  bulk energy, we advise him/her to include the new term in the
+  Landau-de Gennes class and keep the program structure.
+  
+\item Boundary is a specialization of energy, but still a super-class,
+  which contains the API to call functions to calculate R.H.S of
+  functions \eqref{eq:dissipacao_Q_superficie} and some variables
+  containing information such as: Energy name and which boundary
+  number. Any new boundary condition must be derived from this super
+  class. After performing a derivation the user has to add an entry in
+  the geometry class routine: setup_boundary_conditions. Containing
+  the keyword that will be used in the input file.
+
+\item Integrator contains the routine to evolve the system of
+  equations. This super-class is very simple, it contains the routine
+  \textit{evolve}, which will perform the time integration of the
+  system of equations. However, much of the actual calculation is
+  performed in the class geometry. Here the user must provide the
+  coefficients of the integrator pieces and also a function to
+  estimate the integration error.
+
+\item Geometry contain the information about the geometry of the
+  system and their boundary conditions. Here the user must provide a
+  way to calculate the boundaries normals, and the parameter field
+  derivatives. With all inofrmation present in the geometry class, we
+  put the calculation of RHS in it, therefore, there is a routine to
+  calculate the evolution RHS. To do this the geoemtry has as member
+  an energy instance and a linked list containing the boundaries
+  pointers.
+
+
+\end{itemize}
+
+ 
 \section{List of available parameters and its units:}
  \label{apx:list_of_parameters}
 
