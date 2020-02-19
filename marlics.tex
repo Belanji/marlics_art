@@ -140,8 +140,8 @@ Brazil}
 \begin{abstract}
   In this paper we present Marlics to the world. Marlics is a software
   written in C++ to solve the Beris-Edwards equation of
-  nematodynamics without flow for both nematic and cholesteric liquid
-  crystals. The program takes as input an descriptive file giving the
+  nematodynamics without flow for both achiral and chiral nematic liquid
+  crystals. The system solved by Marlics consists in the dynamical evolution for the Q-tensor in the Landau-de Gennes formalism for different geometries, including confined slab cells and spherical, liquid crystal droplets.  The program takes as input a descriptive file giving the
   simulations parameters and initial conditions generating a series of
   different snapshots. The code is organized in class modules which
   can be modified by the user base to attend their further needs.
@@ -178,7 +178,7 @@ Liquid crystals \sep Landau-de Gennes \sep finite differences.
 {\em Supplementary material: Complete instructions about program usage can be found in the user-guide. }\\
   % Fill in if necessary, otherwise leave out.
 
-{\em Nature of problem: Marlics was developed to simulate liquid crystal devices via solution of the Beris-Edwards system of differential equations equations without flow.}\\
+{\em Nature of problem: Marlics was developed to simulate liquid crystal devices via solution of the Beris-Edwards system of differential equations without flow.}\\
 % Describe the nature of the problem here. \\
 
 {\em Solution method:  The system of equations is solved using finite differences in both time and space. The time integration is performed using an explicit integrator with or without variable time-step.}\\
@@ -208,35 +208,21 @@ Liquid crystals \sep Landau-de Gennes \sep finite differences.
 \section{Introduction}
 \label{Introduction}
 
-\textbf{Misses an introduction to optical devices or light modulating
-  devices.}
+Newly discovered and synthesized materials were responsible for a silent revolution that took place over the past decades in optics and photonics. Although the fundamental laws of optics have been well stabilised for more than a century, only with the application of new, smart and responsive materials that remarkable applications and devices thrived on our daily lives.  Such applications include display devices [], data storage and diffraction gratings [], image processing [], lasers [], optical tweezers [], spatial light modulators [] and son many others. LCs stand out among such materials since they are excellent to perform these functions, among which they can selectively reflect or transmit incoming light depending on its state. Moreover, LCs are responsible materials that can be controlled by  external stimuli, so their optical state can be easily tuned. In LC displays (LCDs), one of the most common application, it is used electric fields to control the LC optical state \cite{wu2006fundamentals}. Furthermore, LCs are often thought as scaled labs to study different scenarios and systems, which include topology [], knots [], pattern formation [], nature mimicking [], geometrical frustration [] and many others.
 
-Liquid crystals are excellent materials to perform these functions,
-since it can selectively reflect or transmit incoming light depending
-on its state, which can be controlled by an external perturbation. In
-displays, one of the most common application, it is used electric
-fields to control the liquid crystals state \cite{wu2006fundamentals}.
-There are many types o LCDs current available, being the major
-difference among them given by the distribution of electrodes in the
-device, and the inclusion of protrusions in the boundaries of the
-confining surface \cite{chen2011liquid}.
+%There are several types o LCDs, where the major difference among them is the distribution of electrodes on the device, and the inclusion of protrusions at the boundaries of the confining surface \cite{chen2011liquid}.
 
-The design of new devices requires a great amount of experimentation
+In general, the design of new devices or any experimental setup involving soft condensed materials require a great amount of experimentation
 and empirical knowledge. Performing every trial with a real apparatus
-would require a unpractical number of prototypes to construct and
-tested. As an alternative, the researcher can turn to modeling
-softwares to aid in the discovery process. Before prototyping a device
-it can be simulated in a package in many forms before being
-constructed saving time and resources.
+would require an unpractical number of prototypes to construct and
+test. As an alternative, researchers can turn to modeling
+software to aid them in the discovery process. Before prototyping a device or a complex experimental setup, or even to understand empirical data, they can be conveniently simulated in a package in many different forms, thus saving time and resources.
 
-There are some commercial available softwares for simulation of liquid
-crystals devices, for instance LC3D\cite{anderson2001lc3d} and LCD
-master\cite{LCDMaster}. These softwares provides out of the box
-capabilities for simulation and visualization, however it lacks the
-possibility for extension by the user. Open sources alternatives have
-been appearing to fill this gap, Licra \cite{Licra} is one of this
-attempt. The licra software is written in C an support a few modes of
-use, however, its implementation is very monolithic, and if the user
+There exist some commercially available software for simulation of LC under different geometries, specially focusing on display devices, for instance LC3D~\cite{anderson2001lc3d} and LCD
+master\cite{LCDMaster}. These software provide out of the box capabilities for simulation and visualization. However, they lack the
+possibility of modifications and extension by the user. Open sources alternatives have appeared in the recent years to fill this gap, for example, Licra \cite{Licra} is one of such
+attempt. The Licra software is written in C and support a few modes of
+use, however, its implementation is very monolithic, and, if the user
 wants to change a simulation parameter, or a mode of operation, he/she
 has to code it directly to the source code and recompile the
 executable. Recently, another open source liquid crystal simulation
@@ -245,64 +231,47 @@ openQmin, performs the minimization of the liquid crystal energy,
 searching for its minimum energy state. The program works in many
 situations and can be fine tuned by the user via a script or a
 graphical interface.  It has many desirable capabilities, and performs
-very well, but the program is focused in static problems, and in some
-situations he dynamic operation of the device is a matter of great
-importance.
+very well, but the program is focused on static problems. However, in several situations the dynamical process leading to a determined state is very important, for instance, during the annealing of defects, or during the operation of a certain LC device, where knowing the time dependence from swithing from one state to another is crucial.
 
-In this paper we present \textit{marlics}, it is a open source code
+In this paper we present \textit{marlics}, which is an open source code
 designed to simulate the dynamics of liquid crystal order
-parameters. The code The code is written in C++ using an independent
+parameters written in terms of the Q-tensor and obeying the Landau-de Gennes formalism in the presence of an external electric field for achiral and chiral nematics. The code is written in C++ using an independent
 system of classes, which provide the building blocks for the most
 common cases, and provide a framework where the user can develop their
-specific applications. The mode of operation is defined by a script
-which is passed to the software.
+specific applications. The mode of operation is defined by a script which is passed to the software and allows the used to set the different geometries (slab, sphere), boundary conditions, and initial conditions.
 
 \section{Theoretical background}
 
-Liquid crystal are anisotropic liquids which have a certain degree of
-long range ordering. Nematic LCs presents orientational order, but no
-positional one. Its state can be discribed by a combination of scalar
-and vectorial fields.  The prefered direction can be represented by a
-vector $\vec{n}$, and due to the phase organization $\vec{n}$ and
-$-\vec{n}$ are equivalent. In some circunstances, it happens that the
-liquid crystal presents a second prefered direction, which it is also
-described by a a vector $\vec{l}$ called co-director. The degree which
-the system is ordered in in the direction of the director is given by
-the scalar order paramter $S$, and by the scalar order parameter $P$
-in the co director direction. In this way, when $S=1$ the system is
-perfect oriented along $\vec{n}$, while $S=0$ given an isotropic
-liquid (no preferred orientation). It is possible to have $S <0$, in
-this case the molecules of the liquid crystal is oriented in average
-perpendicular to the director $\vec{n}$. 
+LCs are anisotropic materials which have a certain degree of
+long range ordering. Nematic LCs present orientational order, but no
+positional order. Its state can be described by a combination of scalar and vectorial fields.  The preferred direction, for uniaxial nematics, can be represented by a vector $\vec{n}$, representing the average alignment of the anisometric molecules composing the material, and, due to the non-polar organization, $\vec{n}$ and
+$-\vec{n}$ are equivalent. In some circumstances, if the material is biaxial, the
+liquid crystal presents a second preferred direction, which it is also
+described by a vector $\vec{l}$, called co-director. The degree in which the system is ordered in the direction of $\vec{n}$ is given by
+the scalar order parameter $S$, whereas the order parameter $P$
+measures the degree of orientation in the co-director direction. In this way, when $S=1$ the system is
+perfectly oriented along $\vec{n}$, while $S=0$ represents an isotropic liquid (no preferred orientation). It is also possible to have $S <0$, in this case the molecules of the LC are oriented on average perpendicular to the director $\vec{n}$. 
 
-The density of energy $f_s(S)$ associated with the scalar order
-parameter $S$ is given by:
-\begin{equation}
-  f_L(S)=\dfrac{1}{2} a \left(T-T^* \right) S^2- \dfrac{1}{3} S^3+\dfrac{1}{4} c S^4 +\dfrac{1}{2} L (\nabla S)^2
-\end{equation}
-where $\lbrace{a,b,c,L}$ are thermodynamics constants. The energy
-associated with variation of $\vec{n}$ in space is given the Frank
-density of energy:
+In the general continuum theory for chiral nematics, the energy associated with variation of $\vec{n}$ in space is given by the Frank density of energy:
 \begin{align} \label{eq:frank_energy}\nonumber
   f_f(\vec{n})&=\dfrac{1}{2} K_{11} (\nabla \cdot  \vec{n})^2 + \dfrac{1}{2} K_{22} (\vec{n} \cdot \nabla \times \vec{n}+q_0)^2\\
  & +\dfrac{1}{2} K_{33} \left| \vec{n} \times \nabla \times \vec{n} \right|^2 
-  +\dfrac{1}{2} K_{24}  \nabla \cdot \left(\vec{n} \times \nabla \times  \vec{n} +\vec{n} \cdot \nabla \vec{n} \right)
+  +\dfrac{1}{2} K_{24}  \nabla \cdot \left(\vec{n} \times \nabla \times  \vec{n} +\vec{n} \cdot \nabla \vec{n} \right),
 \end{align}
-being $\lbrace K_{11}, K_{22}, K_{33},K_{24} \rbrace$ elastic
-constants with units of force.
-
-The scalar order parameters $\lbrace S, P \rbrace$ and the director
-and co-director $\lbrace \vec{n}, \vec{l} \rbrace$ can be combined in
-unique order parameter $\mathbf{Q}$ , which is a second rank tensor whose
+with $\lbrace K_{11}, K_{22}, K_{33},K_{24} \rbrace$ being the elastic
+constants of splay, twist, bend and saddle-splay, respectively and $q_0$ is the natural wavevector for a chiral nematic phase. The above expression is frequently used to interpret experimental results in terms of the elastic constants.  Nevertheless, it does not take into consideration neither variations in space or with temperature of the scalar order parameters. In the Landau-de Gennes formalism, however, the density of energy $f_s(S)$ associated with the scalar order parameter $S$ is given by:
+\begin{equation}
+\label{2}
+  f_L(S)=\dfrac{1}{2} a \left(T-T^* \right) S^2- \dfrac{b}{3} S^3+\dfrac{1}{4} c S^4 +\dfrac{1}{2} L (\nabla S)^2,
+\end{equation}
+where $a,b,c$ and $L$ are thermodynamics constants, $T$ is the system's temperature and $T^*$ is the virtual nematic-isotropic phase transition temperature. Notice that the above equation describes variations of $S$ in space and with temperature. The scalar order parameters $\lbrace S, P \rbrace$ and the director and co-director $\lbrace \vec{n}, \vec{l} \rbrace$ can be combined in a unique order parameter $\mathbf{Q}$ , which is a second rank tensor whose
 elements are given by:
 \begin{equation}\label{eq:tensorial_parameter}
-  Q_{ij}=\dfrac{1}{2} S ( 3 n_{i} n_{j}- 1) + \dfrac{P}{2} (l_i l_j - m_i m_j)
+  Q_{ij}=\dfrac{S}{2}( 3 n_{i} n_{j}- 1) + \dfrac{P}{2}(l_i l_j - m_i m_j),
 \end{equation}
-where $i=1,2,3$ and $j=1,2,3$.  This order parameter is symmetric and traceless, therefore only 5 independent elements, for example $\lbrace Q_{11}, Q_{12},Q_{13}, Q_{22}, Q_{23} \rbrace $ are necessary to fully determine it.
-
-Deviations from the equilibrium value of the scalar order paramter, or
-spatial variations of the director has associate and energy density
-given by Landau- de Gennes energy density ($f_{LDG}(\mathbf{Q})$:
+where $i=1,2,3$ and $j=1,2,3$ and $vec{m}$ is the third biaxial director.  This order parameter is symmetric and traceless, therefore only 5 independent elements, for example $\lbrace Q_{11}, Q_{12},Q_{13}, Q_{22}, Q_{23} \rbrace $, are necessary to fully determine it. Since the tensor $\mathbf{Q}$ contains all the elements of symmetry of a nematic phase, we may rewrite eq.~\eqref{2} in terms of the scalars formed by the trace of Q and its gradients. Therefore, deviations from the equilibrium value of the scalar order parameter, or
+spatial variations of the director has an associate energy density,
+given by Landau-de Gennes energy density, ($f_{LDG}(\mathbf{Q})$) as:
 \begin{align}\label{eq:Landau_deGennes} \nonumber
   f_{LDG}(\mathbf{Q})&=\dfrac{a}{2}(T-T^*) \text{Tr}(\mathbf{Q}^2) +
                        \dfrac{B}{3} \text{Tr}(\mathbf{Q}^3)
@@ -310,47 +279,46 @@ given by Landau- de Gennes energy density ($f_{LDG}(\mathbf{Q})$:
                      &+ \dfrac{1}{2} L_1 \left( \partial_i Q_{jk} \right)
                        \left( \partial_i Q_{jk} \right) + \dfrac{1}{2} L_2
                        \left( \partial_i Q_{ji} \right) \left( \partial_k Q_{jk} \right) \\
-                     &+\dfrac{1}{2} L_3 Q_{ij}\left( \partial_i Q_{kl}\right) \left(\partial_j Q_{kl}\right)  + \dfrac{4 \pi}{P_0} L_q \epsilon_{ijk} Q_{ij}\left( \partial_j Q_{ik} \right)                     
+                     &+\dfrac{1}{2} L_3 Q_{ij}\left( \partial_i Q_{kl}\right) \left(\partial_j Q_{kl}\right)
+                     +\dfrac{1}{2} L_s \left( \partial_k Q_{ij} \right)\left( \partial_j Q_{ik} \right)\\
+                     &+ \dfrac{4 \pi}{P_0} L_q \epsilon_{ijk} Q_{ij}\left( \partial_j Q_{ik} \right)                     
 \end{align}
-%
-where $Q_{ij,k}= \partial Q_{ij}/\partial x_k$ , $\epsilon_{ijk}$ is
+where $Q_{ij,k}=\partial Q_{ij}/\partial x_k$, $\epsilon_{ijk}$ is
 the Levi-Civita tensor, $\lbrace L_1 ,L_2,L_3, L_q, L_s \rbrace$ are
-the elastic constants, $\lbrace a,B,C \rbrace$ are thermodynamic
-constants related to the nematic isotropic transition and $T$ and
-$T^*$ are the system temperature and the virtual nematic-isotropic
-phase transition temperature, respectively. Here we used Einstein
-summation convention in repeated indexes.
+elastic constants (in the sense that they represent spatial variations of $\vec{n}$), $\lbrace a,B,C \rbrace$ are thermodynamic
+constants related to the nematic isotropic transition and $P_0=2\pi/q_0$ is the natural pitch of the chiral nematic phase ($q_0=0$ if the material is achiral), thus the term with $L_q$ represents the chiral contribution to the free energy. Here we have used Einstein's summation convention on repeated indexes.
 
-The elastic constants of the Frank energy $\lbrace K_{11}, K_{22}, K_{33}, K_{24} \rbrace$ and the Landau-De Gennes ones $\lbrace L_1 ,L_2,L_3, L_q, L_s \rbrace$ are related by the expressions:
+The elastic constants of the Frank energy $\lbrace K_{11}, K_{22}, K_{33}, K_{24} \rbrace$ and the Landau-De Gennes ones $\lbrace L_1 ,L_2,L_3, L_q, L_s \rbrace$ are related by the expressions [CITAR]:
 \begin{align}\label{eq:frank_to_ldg} \nonumber
-L_1&=\dfrac{2.0 (k33-k11+3.0 k22)}{(27.0 {S_{eq}}^2)}\\\nonumber
-L_2&=\dfrac{4.0 (k11-k22-k24)}{(9.0 {S_{eq}}^2)}\\\nonumber
-L_3&=\dfrac{4.0 (k33-k11)}{(27.0 {S_{eq}}^3 )}\\\nonumber
-L_q&=\dfrac{2.0 (k22)}{(9.0 {S_{eq}}^2)}\\
-L_s&=\dfrac{4 (k24)}{(9.0 {S_{eq}}^2)}
+L_1&=\dfrac{2 (K_{33}-K_{11}+3 K_{22})}{(27 {S_{eq}}^2)}\\\nonumber
+L_2&=\dfrac{4 (K_{11}-K_{22}-K_{24})}{(9 {S_{eq}}^2)}\\\nonumber
+L_3&=\dfrac{4 (K_{33}-K_{11})}{(27 {S_{eq}}^3 )}\\\nonumber
+L_q&=\dfrac{2 (K_{22})}{(9 {S_{eq}}^2)}\\
+L_s&=\dfrac{4 (K_{24})}{(9 {S_{eq}}^2)}
 \end{align}
 
 The dielectric energy density is given by:
 \begin{equation}
  f_e(\mathbf{Q})= -\dfrac{1}{3} \epsilon_0 \Delta \epsilon^m E_i E_j Q_{ij}+ \dfrac{\epsilon_0}{2}  \mathbf{E} \cdot \mathbf{E},
 \end{equation}
-where $e_0$ is the vacuum dieletric constant,
+where $\epsilon_0$ is the vacuum dieletric constant,
 $\Delta \epsilon=\epsilon_{\parallel} - \epsilon_{\perp}$ is the
-dielectric anisotropy which measures the diference between the
-dieletric constant parallel($\epsilon_{\parallel}$) and perpendicular
+dielectric anisotropy, which measures the difference between the
+dielectric constant parallel($\epsilon_{\parallel}$) and perpendicular
 ($\epsilon_{\perp}$) to the liquid crystal director.  The volume energy
 density ($f_v$) will be given by the sum of all energy terms being considered:
 \begin{equation}\label{eq:total_energy}
-  f_v(\mathbf{Q})=f_{ldg}(\mathbf{Q})+f_e(\mathbf{Q})
+  f_v(\mathbf{Q})=f_{LDG}(\mathbf{Q})+f_e(\mathbf{Q})
 \end{equation}
 
 The liquid crystal also interacts with the confining surfaces, which
-can induce an order parameter at the surface and a proffered direction
-for the direction, which is called surface easy axis $n_0$. One of the
+can induce an order parameter at the surface and a preferred direction
+for the director, which is called surface easy axis $n_0$. One of the
 simplest form of the surface energy density between a liquid crystal
 and a surface is given by the Rapini-Papoular (also called Nobili-Durant) which is given by:
 \begin{equation}
-  f_{rp}(\mathbf(Q))=\dfrac{1}{2} W_1 (Q_{ij}-Q^0_{ij}) (Q_{ij}-Q^0_{ij})
+\label{RP}
+  f_{RP}(\mathbf(Q))=\dfrac{1}{2} W_1 (Q_{ij}-Q^0_{ij}) (Q_{ij}-Q^0_{ij})
 \end{equation}
 where $Q_{ij}^0$ is the surface induced order parameter, which can be
 given in its tensorial form, or constructed using the induced scalar
@@ -359,7 +327,7 @@ $\lbrace \vec{n}, \vec{l} \rbrace$ using expression
 \ref{eq:tensorial_parameter}.
 
 When the liquid crystals boundary is a liquid or gas, instead of
-inducing a preferred direction the surface may induces a a preferred
+inducing a preferred direction, the surface may induce a preferred
 plane of orientation perpendicular to the surface. Any variation of
 the director inside this plane gives the same energy. This type of
 surface energy is described by the Fournier-Galatola anchoring energy
@@ -376,32 +344,31 @@ The time evolution of the order parameter is given by the
 Beris-Edwards set of equations. If we neglect the liquid crystal flow,
 the time evolution of $Q_{ij}$ in the bulk will be given by:
 \begin{equation} \label{eq:dissipacao_Q}
-\dfrac{\partial Q_{ij}}{ \partial t} = -\dfrac{1}{\mu} \left( \dfrac{\partial f_{V}(\mathbf{Q})}{\partial Q_{ij}} - \dfrac{\partial}{\partial x_k } \dfrac{\partial f_V(\mathbf{Q})}{\partial Q_{ij,k}}  \right)=F_{ij}(\mathbf{Q}),
+\dfrac{\partial Q_{ij}}{ \partial t} = -\dfrac{\Lambda_{ijkl}}{\mu} \left( \dfrac{\partial f_{V}(\mathbf{Q})}{\partial Q_{kl}} - \dfrac{\partial}{\partial x_m } \dfrac{\partial f_V(\mathbf{Q})}{\partial Q_{kl,m}}  \right)=F_{ij}(\mathbf{Q}),
 \end{equation}
 %
-where $\mu$ is the bulk viscosity and $ \partial Q_{ij} \partial Q{kl} = (\delta_{ik} \delta_{jl}+\delta_{jk} \delta_{kl}-2 \delta_{ij} \delta_{kl}/3)$. Meanwhile the dynamics in the bulk will be given by
+where $\mu$ is the bulk viscosity (related to the rotational viscosity), and $ \Lambda_{ijkl} = (\delta_{ik} \delta_{jl}+\delta_{jk} \delta_{kl}-2 \delta_{ij} \delta_{kl}/3)$. Meanwhile the dynamics in the bulk will be given by
 \begin{align}\label{eq:dissipacao_Q_superficie}
-\dfrac{\partial Q_{ij}}{\partial t}=-\dfrac{1}{\mu_s}\left(\nu_k\dfrac{\partial f_{LDG}(\mathbf{Q})}{\partial Q_{ij,k}} -\dfrac{\partial f_{pen}(\mathbf{Q})}{\partial Q_{ij}}\right)=F^s_{ij}(\mathbf{Q}),
+\dfrac{\partial Q_{ij}}{\partial t}=-\dfrac{\Lambda_{ijkl}}{\mu_s}\left(\nu_m\dfrac{\partial f_{V}(\mathbf{Q})}{\partial Q_{kl,m}} -\dfrac{\partial f_{suf}(\mathbf{Q})}{\partial Q_{kl}}\right)=F^s_{ij}(\mathbf{Q}),
 \end{align}
-here $\mu_s$ is the surface viscosity.
+here $\mu_s$ is the surface viscosity, $\nu_m$ is the $m_{th}$ component of the normal to the surface, and $f_{suf}$ is the surface energy, which may be chosen to be eq.~\eqref{RP} or eq.~\eqref{eq:penalizacao}.
 
 We solve solve the system of equations using the method of lines
-\cite{Bhattacharjee2008}. In this method the spatial and time
-discretization of the governing equations are performed separated and
-independently, being the spatial dimensions of the equations
-discretized first.  We discretize the R.H.S of
-\eqref{eq:dissipacao_Q_superficie} and
-\eqref{eq:dissipacao_Q_superficie} by finite diferences. In the bulk
-we have taken centered diferences for both first order and second
-order derivatives. In the surface we have taken centered diferences
+\cite{Bhattacharjee2008}. In this method, the spatial and time
+discretization of the governing equations are performed separately and
+independently, and the spatial dimensions of the equations
+discretized first.  We discretize the right-hand side of
+\eqref{eq:dissipacao_Q} and
+\eqref{eq:dissipacao_Q_superficie} by means of finite differences. In the bulk, we have taken centered differences for both first order and second
+order derivatives. On the surface, we have taken centered differences
 for derivatives perpendicular to the normal and first order to
 derivatives parallel to the surface normal.
 
-In the methods of lines the temporal discretization depends on the
-kind of integrator intendend to propagate the solution. In the current
-version of marlics, we have implemented only explicit integrators,
-thus we have aproxiameted the time derivative by forward diferences.
-As an example we will take the Euler method; assuming $Q^t_{ij}$ is
+In the method of lines, the temporal discretization depends on the
+kind of integrator intended to propagate the solution. In the current
+version of Marlics, we have implemented only a explicit integrator,
+thus we have approximated the time derivatives by forward differences.
+As an example, we shall take the Euler method: By assuming $Q^t_{ij}$ is
 the value $Q_{ij}$ at time $t$, the value of $Q^{t+\Delta t}_{ij}$ can
 be calculated by:
 \begin{align}
@@ -411,10 +378,10 @@ be calculated by:
 Although the Euler method is convergent and can be used in some cases,
 it has its drawbacks. The value of $\Delta t $ is fixed during the
 simulation, and the allowed timestep size is to small for some
-applications. As an alternative we have provided another 2 explicit
+applications. As an alternative we have provided another (SAO 3 INTEGRADORES?) 2 explicit
 integrator with the program: xplicit second order Runge-Kutta, which
-also has a fixed timestep but is more stable and the Dormand-Prince
-5(4), which has a self adaptive timestep. We implemented the time
+also has a fixed timestep but is more stable, and the Dormand-Prince
+5(4), which has a self-adaptive timestep. We implemented the time
 adaption as proposed in reference \cite{hairer2008solving}.
 
 \section{Software Usage:} \label{sec:software_usage}
@@ -427,74 +394,68 @@ in the supplementary material ``Userguide''.
 
 The installation of Marlics in Unix systems is very
 straightforward. The source code comes with a \textit{makefile} to
-help user compile it in its computer. Actually the makefile provides
-an automatic installation for two compilers (being one of them free).
-The user will need just to assure he/she has the \textit{make}
+help users compile it on the computer. Actually, the {\it makefile} provides
+ automatic installation for two compilers (one of them is free).
+The user will  just need to assure that the \textit{make}
 software and the necessary external libraries and their respective
-developer files installed. These libraries are: GSL (Gnu Scientific
-library), OpenMp(optional, but highly recomended) and a CBLAS
+developer files are installed. These libraries are: GSL (Gnu Scientific
+library), OpenMp (optional, but highly recommended) and a CBLAS
 implementation (you can use the GSL implementation for example). If
 everything is present, the user just need to open a terminal in the
 program folder and type:
+{\it
 \begin{lstlisting}
   make
 \end{lstlisting}
-to compile the program. Once the compilation is done, the user will
-find a executable named \textit{marlics} in the instalation
+}
+\noindent to compile the program. Once the compilation is done, the user will
+find an executable named \textit{marlics} in the installation
 folder. For ease of use, this executable can be added to one of the
 system search paths for binaries files, or the user can add the
-installation folder to the list of search-able paths. Its is also
-possible to run the simulations in the same path that the software is
-installed, but we strong recommend against, since it can be become
-very confuse.
+installation folder to the list of searchable paths. Its is also
+possible to run the simulations in the same path that the software is installed, but this is not recommended.
 
 \subsection{Simulation set up and Execution:}
 
-To execute marlics you must call the program passing an input file
-which sets the simulation parameter as follows:
+To execute marlics, the user must call the program passing an input file, which sets the simulation parameter as follows:
 \begin{lstlisting}
 marlics intput_file
 \end{lstlisting}
-being \textit{input\_file} the file containing the simulation
+where \textit{input\_file} is the file containing the simulation
 parameters.
 
-We already provide input files for some situations that the user can
-use to test the program, or as a base to their own simulations. All
+We here provide an input files that the user can use to test the program, or as a base to their own simulations. All
 the parameters necessary to set up the simulation must be passed to
-the program via the input file. An entry in the input file is set by passing the parameter name
-followed by the parameter required values:
+the program via input file. An entry in the input file is set by passing the parameter's name
+followed by the parameter's required values:
 \begin{lstlisting}
 parameter value
 \end{lstlisting}
-Comments can be placed in the input file starting a line with ``\#'',
+Comments may be placed in the input file by starting a line with ``\#'',
 everything in this line will be ignored by marlics. Also, everything
 following the required parameters will also be ignored by marlics. We
-found it quite useful to let the parameters units after its values. Some paramters must be set, while others can have standard values assciated with them. Whenever marlics use an standard value, it inform the user in the standard output whch value was used.
-The paramerters standard values and its  units can be found in the table \ref{apx:list_of_parameters}.
+find it very useful to keep the parameters units after their values. Some parameters must be set, while others can have standard values associated with them. Whenever marlics use an standard value, it informs the user in the standard output what value has been used.
+The standard values of the parameters and their units can be found in the table given in \ref{apx:list_of_parameters}. The simulation constants must be filled with a real number. The user has two options to pass the elastic constants: the user can pass the $L_i$ values (elastic constants in the Landau-de Gennes formalism), which are the constants actually used in the calculations, or to pass the $K_{ii}$ values (elastic constants in the Frank formalism) and let marlics calculate $L_i$. 
+Also, the chirality power can be passed in two different ways, as $p_0$, i.e the pitch, or as $q_0$, i.e the helix wavevector.
 
-The simulation constants must be filled with a real number. The user has two options to pass the elastic constants: the user can pass the $L_i$ values, which are the constants actually used in the calculations, or pass the $k_{ii}$ values and let marlics calculate $L_i$. 
-Also the chirality power can be passed in two different ways, as $p_0$, i.e the helix passe, or as $q_0$, i.e the helix vector.
+We also provide the most common initial conditions: random, homogeneous oriented along a direction $\vec{v}$ and an initial condition set as read\_from\_file, in which the user passes a file containing the initial condition. The refereed file must be formatted as the standard output file presented in section \ref{sec:output_files}. The remaining initial conditions can be checked in the user manual.
 
-We provide the most common initial conditions: random, homogeneous oriented along a direction $\vec{v}$. We have also provide an initial condition set as read\_from\_file and pass an file containing the initial condition. The refereed file must be formated as the standard output file presented in section \ref{sec:output_files}. The remaining initial co nditions can be checked in the user manual.
-
-We provided 3 defferent geometries in marlics: bulk, sphere and slab. Each geometry has its number of boundary conditions, in the case, 0, 1 and 2 respectively. To define a boundary the user must start a line with the \textit{boundary} keyword followed by the boundary name and its number. There is 4 forms of boundary conditions implemented in marlics: Rapinni-Papoular (in Nobili-Durant) form, Fournier-Galatola, strong boundaries and homeotropic.
-
-For more details see the supplementary file ``Userguide''.  For
+We provided 3 different geometries in marlics: bulk (there are no boundary conditions, only the bulk material), sphere and slab (with substrates providing alignment). Each geometry has its number of boundary conditions, in the case, 0 for bulk, 1 for sphere and 2 for slab. To define a boundary, the user must start a line with the \textit{boundary} keyword followed by the boundary name and its number. There are 4 forms of boundary conditions implemented in marlics: Rapinni-Papoular (in Nobili-Durant) form, Fournier-Galatola, strong boundaries and homeotropic. For more details see the supplementary file ``Userguide''.  For
 reference, we also include an example of input file in the appendix
 \ref{apx:input_file}.
 
 \subsection{Output files:}\label{sec:output_files}
 
-The software produces two outputs: an log of the program execution,
+The software produces two kinds of outputs: a log of the program execution,
 and a series of files containing the spatial distribution of the order
-parameters. The log has the function of informing the user about the
+parameters. The log informs the user about the
 parameters read by the program, so it can be used as reference in the
-future, and informing the current state of the simulation. The log is
+future, and informs the current state of the simulation. The log is
 printed in the standard output, which can aid the preparation of the
-input file, but we strong recommend redirecting it to a separate file
-for reference in future.
+input file, but we strongly recommend redirecting it to a separate file
+for future reference.
 
-The main output of the software are the files containing the spatial
+The main outputs of the software are the files containing the spatial
 distribution of the order parameter: the main LC director director
 $\vec{n}$, the co-director $\vec{l}$, the uniaxial order parameter $S$
 and biaxial order parameter $P$. We decided to output the order
@@ -502,19 +463,19 @@ parameters in this form instead of the elements of $Q_{ij}$, since the
 former are more ready to use and interpret than the later.  We also
 preferred to refer to the position in space using the lattice numbers
 instead of the space position in the Cartesian frame. The actual
-position can be easily reprieved multiplying the column by its
+position can be easily reprieved by multiplying the column by its
 referred grid spacing ($dx$, $dy$ or $dz$). Although every output file
-has associate with it an time $t$, this number is not output in the
-file. Instead the output file number and is referred output time is
+is associated with a specific time $t$, this number is not output in the
+file. Instead, the output file number and the referred output time are
 informed in the log output. 
 
 An example of a truncated output file
-can be viewed in appendix \ref{apx:output_file}.  More information can
+can be viewed in \ref{apx:output_file}.  More information can
 be found the in the supplementary material``Userguide''.
 
 \section{Test problems:}\label{sec:testing_marlics}
 
-To validate our code we performed a few standard simulations. Even
+To validate our code, we performed a few standard simulations. Even
 though we are presenting a source code which can be used as a
 framework for user implemented situations, here we wanted to show out
 of the box capabilities. In this way we chose some of well documented
@@ -531,11 +492,18 @@ It is know that a cholesteric liquid crystal with pitch $p_0$ placed
 inside slab with planar anchoring in both substrates will organize
 itself with the profile 
 
-\subsection{Nematic sphere with strong anchoring}
+\subsection{Cholesteric sphere}
 
+In this example, we explore two different situations where cholesterics are confined in a spherical geometry, that is, we study the configuration withing cholesteric droplets. 
 
-\subsection{Cholesteric sphere with weak anchoring}
+\begin{figure*}[h]
+	\includegraphics[width=\linewidth]{n=2.eps}
+	%\vspace{-1.0cm}
+	\caption{twisted bipolar structure (TBS)}
+	\label{n=2}
+\end{figure*}
 
+ LC droplets are often made by meticulously controlling the flow of two or more unmissable fluids, such as water and the LC material, in a microfluidic process []. In general, CLCs in spherical geometries present a myriad of possible metastable states depending on several parameters such as chirality, anchoring strength, anchoring kind and elastic constants. Here, we explore two different examples, both starting from a randomly oriented sample and executing a so-called thermal quenching, in which the droplet is quickly cooled from the isotropic state to the LC state. In the first case, shown in figure~\ref{n=2}, the directors (top) and the isosurfaces (bottom) are shown for three different times, viewed from the $xz$ axis. Here, we assume a radius-to-pitch ratio ($N=4R/p$, where $R$ is the radius of the droplet and $p$ is the CLC pitch) $N=2$ and that the droplets are subjected to strong planar anchoring.  The left column shows the directors organization (top) and the defect lines for $t=0.06$ ms. In the top figures, the red colored directors represent the position where defect lines cross that plane. For such short times, the organization is very random and the number of defect lines high. The middle column shows the droplet for $t=0.37$ ms, where the number of defect lines has decreased (annealing of defects) and the director organization (top) becomes more organized and the right-side column shows the final organization at $t=3.06$ ms. The final structure is known as twisted bipolar structure (TBS), with two boojums (surface defect) at the antipodal position, shown in the bottom figure. Notice that the defect annealing process here represented is the solution for the Beris-Edwards  equation, so one can use Marlics to study defect dynamics for several different parameters in spherical geometries. Also, one can study non-chiral situation (nematic) by making the pitch ($p$) infinity, so $N=0$.
 
 
 
